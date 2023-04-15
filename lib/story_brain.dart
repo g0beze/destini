@@ -1,7 +1,7 @@
 import 'story.dart';
 
 class StoryBrain {
-  List<Story> _storyData = [
+  final List<Story> _storyData = [
     Story(
         storyTitle:
             'Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: "Need a ride, boy?".',
@@ -33,7 +33,13 @@ class StoryBrain {
         choice2: '')
   ];
 
-  int storyNumber = 0;
+  int _storyNumber = 0;
+
+  int get storyNumber => _storyNumber;
+
+  set storyNumber(int value) {
+    _storyNumber = value;
+  }
 
   String getStory() {
     return _storyData[storyNumber].storyTitle;
@@ -67,6 +73,14 @@ class StoryBrain {
 
   void restart() {
     storyNumber = 0;
+  }
+
+  bool buttonShouldBeVisible() {
+    if (storyNumber == 0 || storyNumber == 1 || storyNumber == 2) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
